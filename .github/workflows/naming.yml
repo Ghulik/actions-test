@@ -1,6 +1,6 @@
-name: naming
+name: Naming Convention Check
 # This workflow is triggered on pushes to the repository.
-on: [push, pull_request]
+on: [workflow_dispatch]
 
 jobs:
   build:
@@ -11,8 +11,8 @@ jobs:
     steps:
     - uses: deepakputhraya/action-branch-name@master
       with:
-        regex: '([a-z])+\/([a-z])+' # Regex the branch should match. This example enforces grouping
+        regex: 'SFDC-[0-9]+' # Regex the branch should match. This example enforces grouping
         allowed_prefixes: 'feature,stable,fix' # All branches should start with the given prefix
-        ignore: master,develop # Ignore exactly matching branch names from convention
+        ignore: prod, qa, preprod # Ignore exactly matching branch names from convention
         min_length: 5 # Min length of the branch name
         max_length: 20 # Max length of the branch name
