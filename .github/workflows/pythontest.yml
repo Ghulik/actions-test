@@ -15,7 +15,6 @@ jobs:
       with:
         # Semantic version range syntax or exact version of a Python version
         python-version: '3.x'
-        token: ${{secrets.ACCESS_TOKEN}}
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -23,7 +22,7 @@ jobs:
     # You can test your matrix by printing the current Python version
     - name: search code
       env:
-          API_KEY: ${{ secrets.ACCESS_TOKEN }}
+          API_KEY: ${{ secrets.GITHUB_TOKEN }}
       run: python clonerepo.py
      
         
