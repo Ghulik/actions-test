@@ -15,15 +15,14 @@ jobs:
       with:
         # Semantic version range syntax or exact version of a Python version
         python-version: '3.x'
-        # Optional - x64 or x86 architecture, defaults to x64
-        architecture: 'x64'
+        repository: Ghulik/some-other-private-repo
+        token: ${{secrets.ACCESS_TOKEN}}
     # You can test your matrix by printing the current Python version
     - name: Display Python version
       run: python -c "import sys; print(sys.version)"
     - name: checkout repo content
-      uses: actions/checkout@v2 
-      with:
-        repository: Ghulik/some-other-private-repo
-        token: ${{secrets.ACCESS_TOKEN}}
-        run: python -c "from os import listdir;from os.path import isfile, join;onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]"
+      run: python -c "from os import listdir;from os.path import isfile, join;onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]"
+     
+        
+      
       
