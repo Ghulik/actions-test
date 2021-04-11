@@ -34,6 +34,8 @@ def getFieldsToRemove():
         exit(0)
     return foundMatches
 
+fieldToCheck = getFieldsToRemove()
+
 # destructionChange.xml did not contain any CustomFields
 if(len(fieldToCheck) == 0):
     print('destructiveChanges.xml does not contain CustomField type')
@@ -47,7 +49,7 @@ outputTable = "Found these references:\n\nSearch Term  | File | Repository\n----
 tableColumDelimiter = "|"
 newLine = "\n"
 
-for searchTerm in getFieldsToRemove():
+for searchTerm in fieldToCheck:
     results = g.search_code('org:Ghulik ' + searchTerm)
     for res in results:
         fileName = res.name
