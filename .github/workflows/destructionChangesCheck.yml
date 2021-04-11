@@ -23,6 +23,7 @@ jobs:
     - name: search code
       env:
           API_KEY: ${{ secrets.ACCESS_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
       run: python checkrefs.py
      
         
