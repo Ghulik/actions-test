@@ -15,8 +15,11 @@ jobs:
       with:
         # Semantic version range syntax or exact version of a Python version
         python-version: '3.x'
-        repository: Ghulik/some-other-private-repo
         token: ${{secrets.ACCESS_TOKEN}}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install PyGithub
     # You can test your matrix by printing the current Python version
     - name: search code
       run: python clonerepo.py
