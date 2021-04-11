@@ -32,6 +32,5 @@ def getFieldsToRemove():
 g = Github(key)
 
 results = g.search_code('org:Ghulik Field__c')
-print(g.get_user().get_repos())
 for res in results:
     print('Found match.. File: {} Repository: {}" Path:{}'.format(res.name, res.repository.full_name, res.path))
