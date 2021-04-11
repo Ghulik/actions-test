@@ -32,11 +32,11 @@ def getFieldsToRemove():
     return foundMatches
 
 g = Github(key)
-s = ' '.join(getFieldsToRemove())
-print("Searching query " + s)
-results = g.search_code('org:Ghulik Field__c ApiName__c')
-for res in results:
-    print('Found match.. File: {} Repository: {}" Path:{}'.format(res.name, res.repository.full_name, res.path))
+fieldToCheck = getFieldsToRemove()
+for searchTerm in fieldToCheck:
+    results = g.search_code('org:Ghulik ' + searchTerm)
+    for res in results:
+        print('Found match.. File: {} Repository: {}" Path:{}'.format(res.name, res.repository.full_name, res.path))
 
 if not prid:
     print("Missing PR")
