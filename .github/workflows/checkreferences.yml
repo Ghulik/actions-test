@@ -1,4 +1,4 @@
-name: Search For References
+name: Destruction Changes References
 
 on: 
   workflow_dispatch: 
@@ -22,7 +22,7 @@ jobs:
     # You can test your matrix by printing the current Python version
     - name: search code
       env:
-          API_KEY: ${{ secrets.GITHUB_TOKEN }}
+          API_KEY: ${{ secrets.ACCESS_TOKEN }}
       run: python checkrefs.py
      
         
