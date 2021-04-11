@@ -29,12 +29,12 @@ def getFieldsToRemove():
                                 foundMatches.append(apiname)
                 else:
                     print('destructiveChanges.xml does not contain CustomFields type')
-                    exit 0  
+                    exit(0)  
         print('Fields found in destructive changes to are going to be removed from salesforce: {}'.format(foundMatches))
     except FileNotFoundError:
         # Destruction changes file not found, exit success
         print('destructiveChanges.xml not found')
-        exit 0
+        exit(0)
     return foundMatches
 
 g = Github(key)
@@ -54,6 +54,7 @@ for searchTerm in fieldToCheck:
         print('Found match.. File: {} Repository: {}" Path:{}'.format(res.name, res.repository.full_name, res.path))
 
 if not prid:
+    # Can happen when running action manually, then we will not be commenting any PR
     print("Missing PR")
 else:
     repo = g.get_repo(repo_name)
