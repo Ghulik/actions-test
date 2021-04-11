@@ -1,4 +1,4 @@
-name: Destruction Changes References
+name: Destruction Changes Check
 
 on: 
   workflow_dispatch: 
