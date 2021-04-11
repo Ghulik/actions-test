@@ -7,6 +7,7 @@ key = os.getenv("API_KEY")
 prid = os.getenv("PR_NUMBER")
 repo_name = "Ghulik/actions-test"
 
+# Search for CustomFields referenced in desctructiveChanges.xml
 def getFieldsToRemove():
     foundMatches = []
     try:
@@ -26,16 +27,30 @@ def getFieldsToRemove():
                             if(len(split_string) > 1):
                                 apiname = split_string[1]
                                 foundMatches.append(apiname)
-        print('Fields found in destructive changes to be removed: {}'.format(foundMatches))
+                else:
+                    print('destructiveChanges.xml does not contain CustomFields type')
+                    exit 0  
+        print('Fields found in destructive changes to are going to be removed from salesforce: {}'.format(foundMatches))
     except FileNotFoundError:
+        # Destruction changes file not found, exit success
         print('destructiveChanges.xml not found')
+        exit 0
     return foundMatches
 
 g = Github(key)
 fieldToCheck = getFieldsToRemove()
+
+outputTable = "Search Term  | File | Repository\n------------- | -------------\n"
+tableColumDelimiter = "|"
+newLine = "\n"
+
 for searchTerm in fieldToCheck:
     results = g.search_code('org:Ghulik ' + searchTerm)
     for res in results:
+        fileName = res.name
+        repoName = res.repository.full_name
+        repoPath = res.path
+        outputTable + searchTerm + tableColumDelimiter + fileName + tableColumDelimiter + repoPath + tableColumDelimiter + newLine
         print('Found match.. File: {} Repository: {}" Path:{}'.format(res.name, res.repository.full_name, res.path))
 
 if not prid:
@@ -43,5 +58,5 @@ if not prid:
 else:
     repo = g.get_repo(repo_name)
     pr = repo.get_pull(int(prid))
-    pr.create_issue_comment('test')
+    pr.create_issue_comment(outputTable)
     
