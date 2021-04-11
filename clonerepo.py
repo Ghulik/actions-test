@@ -3,7 +3,7 @@ import os
 from github import Github
 
 
-org:github extension:js test
+#org:github extension:js test
 
 g = Github("${{secrets.ACCESS_TOKEN}}")
 
