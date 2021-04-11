@@ -19,8 +19,9 @@ def getFieldsToRemove():
                 containsCheckedMeta = False
                 for secondChild in child:
                     if "CustomField" in secondChild.text:
+                        print('destructiveChanges.xml contains CustomField type')
                         containsCheckedMeta = True
-                if containsCheckedMeta:
+                if containsCheckedMeta is True:
                     for secondChild in child:
                         if "members" in secondChild.tag:
                             split_string = secondChild.text.split(".", 1)
@@ -28,7 +29,7 @@ def getFieldsToRemove():
                                 apiname = split_string[1]
                                 foundMatches.append(apiname)
                 else:
-                    print('destructiveChanges.xml does not contain CustomFields type')
+                    print('destructiveChanges.xml does not contain CustomField type')
                     exit(0)  
         print('Fields found in destructive changes to are going to be removed from salesforce: {}'.format(foundMatches))
     except FileNotFoundError:
