@@ -29,9 +29,9 @@ def getFieldsToRemove():
         print('destructiveChanges.xml not found')
     return foundMatches
 
-g = Github("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")
+g = Github(key)
 
 results = g.search_code('org:Ghulik Field__c')
-
+print(g.get_user().get_repos())
 for res in results:
     print('Found match.. File: {} Repository: {}" Path:{}'.format(res.name, res.repository.full_name, res.path))
