@@ -45,18 +45,19 @@ if(len(fieldToCheck) == 0):
 g = Github(key)
 
 # Vars for output comment
-outputTable = "Found these references:\n\nSearch Term  | File | Repository\n------------- | -------------\n"
+outputTable = "Found these references:\n\n| Search Term | File | Repository |\n|--- | --- | --- |\n"
 tableColumDelimiter = "|"
 newLine = "\n"
-
+tableRows = ""
 for searchTerm in fieldToCheck:
     results = g.search_code('org:Ghulik ' + searchTerm)
     for res in results:
         fileName = res.name
         repoName = res.repository.full_name
         repoPath = res.path
-        outputTable + searchTerm + tableColumDelimiter + fileName + tableColumDelimiter + repoPath + tableColumDelimiter + newLine
+        tableRows += tableColumDelimiter + searchTerm + tableColumDelimiter + fileName + tableColumDelimiter + repoPath + tableColumDelimiter + newLine
         print('Found match.. File: {} Repository: {}" Path:{}'.format(res.name, res.repository.full_name, res.path))
+outputTable += tableRows
 
 if not prid:
     # Can happen when running action manually, then we will not be commenting any PR
