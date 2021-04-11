@@ -4,6 +4,8 @@ from github import Github
 
 github_workspace = os.getenv("GITHUB_WORKSPACE")
 key = os.getenv("API_KEY")
+prid = os.getent("PR_NUMBER")
+repo_name = "Ghulik/actions-test"
 
 def getFieldsToRemove():
     foundMatches = []
@@ -33,5 +35,9 @@ g = Github(key)
 
 results = g.search_code('org:Ghulik Field__c')
 for res in results:
-    if "Ghulik/actions-test" in res.repository.full_name
+    if repo_name in res.repository.full_name
         print('Found match.. File: {} Repository: {}" Path:{}'.format(res.name, res.repository.full_name, res.path))
+
+repo = g.get_repo(repo_name)
+pr = repo.get_pull(PR_NUMBER)
+pr.create_issue_comment('test')
