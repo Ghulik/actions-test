@@ -6,7 +6,7 @@ from github import Github
 #org:github extension:js test
 
 g = Github("${{ process.env.API_KEY }}")
-
+print("${{ process.env.API_KEY }}")
 results = g.search_code('search_code')
 
 for res in results:
