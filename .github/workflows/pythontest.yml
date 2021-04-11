@@ -21,10 +21,6 @@ jobs:
     - name: Display Python version
       run: python -c "import sys; print(sys.version)"
     - name: checkout repo content
-      uses: actions/setup-python@v2
-      with:
-        repository: Ghulik/some-other-private-repo
-        token: ${{secrets.ACCESS_TOKEN}}
       run: python script.py
      
         
