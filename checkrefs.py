@@ -4,7 +4,7 @@ from github import Github
 
 github_workspace = os.getenv("GITHUB_WORKSPACE")
 key = os.getenv("API_KEY")
-prid = os.getent("PR_NUMBER")
+prid = os.getenv("PR_NUMBER")
 repo_name = "Ghulik/actions-test"
 
 def getFieldsToRemove():
