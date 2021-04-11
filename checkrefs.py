@@ -57,7 +57,7 @@ for searchTerm in fieldToCheck:
         repoName = res.repository.full_name
         repoPath = res.path
         # Ignore base repo
-        if not repo_name in repoName
+        if not repo_name in repoName:
             tableRows += tableColumDelimiter + backTick + searchTerm + backTick + tableColumDelimiter + repoPath + tableColumDelimiter + repoName + tableColumDelimiter + newLine
             print('Found match.. File: {} Repository: {}" Path:{}'.format(res.name, res.repository.full_name, res.path))
 outputTable += tableRows
