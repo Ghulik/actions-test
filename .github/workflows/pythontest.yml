@@ -1,4 +1,4 @@
-name: Python package
+name: Search For References
 
 on: 
   workflow_dispatch: 
@@ -23,7 +23,7 @@ jobs:
     - name: search code
       env:
           API_KEY: ${{ secrets.GITHUB_TOKEN }}
-      run: python clonerepo.py
+      run: python checkrefs.py
      
         
       
