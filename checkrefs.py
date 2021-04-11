@@ -42,8 +42,7 @@ try:
 except NameError:
     print("Missing PR")
 else:
-    print("prid " + prid)
     repo = g.get_repo(repo_name)
-    pr = repo.get_pull(12)
+    pr = repo.get_pull(int(prid))
     pr.create_issue_comment('test')
     
