@@ -37,8 +37,12 @@ results = g.search_code('org:Ghulik ' + ' '.join(getFieldsToRemove()))
 for res in results:
     print('Found match.. File: {} Repository: {}" Path:{}'.format(res.name, res.repository.full_name, res.path))
 
-
-if prid:
+try:
+    prid
+except NameError:
+    print("Missing PR")
+else:
     repo = g.get_repo(repo_name)
     pr = repo.get_pull(prid)
     pr.create_issue_comment('test')
+    
