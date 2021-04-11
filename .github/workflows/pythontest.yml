@@ -23,7 +23,7 @@ jobs:
     - name: Display Python version
       run: python -c "import sys; print(sys.version)"
     - name: checkout repo content
-      run: python -c "from os import listdir;from os.path import isfile, join;onlyfiles = [f for f in listdir(${{ env.working-directory }}) if isfile(join(${{ env.working-directory }}, f))]"
+      run: python script.py
      
         
       
