@@ -33,4 +33,5 @@ g = Github(key)
 
 results = g.search_code('org:Ghulik Field__c')
 for res in results:
-    print('Found match.. File: {} Repository: {}" Path:{}'.format(res.name, res.repository.full_name, res.path))
+    if "Ghulik/actions-test" in res.repository.full_name
+        print('Found match.. File: {} Repository: {}" Path:{}'.format(res.name, res.repository.full_name, res.path))
