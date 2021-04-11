@@ -38,9 +38,7 @@ results = g.search_code('org:Ghulik Field__c')
 for res in results:
     print('Found match.. File: {} Repository: {}" Path:{}'.format(res.name, res.repository.full_name, res.path))
 
-try:
-    prid
-except NameError:
+if not prid
     print("Missing PR")
 else:
     repo = g.get_repo(repo_name)
