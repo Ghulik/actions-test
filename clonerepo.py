@@ -2,7 +2,7 @@ import os
 
 from github import Github
 key = os.getenv("API_KEY")
-
+print("key " + key)
 #org:github extension:js test
 
 g = Github(key)
