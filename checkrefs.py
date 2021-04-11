@@ -53,10 +53,12 @@ backTick = "`"
 for searchTerm in fieldToCheck:
     results = g.search_code('org:Ghulik ' + searchTerm)
     for res in results:
-        repoName = res.repository.full_name
-        repoPath = res.path
-        tableRows += tableColumDelimiter + backTick + searchTerm + backTick + tableColumDelimiter + repoPath + tableColumDelimiter + repoName + tableColumDelimiter + newLine
-        print('Found match.. File: {} Repository: {}" Path:{}'.format(res.name, res.repository.full_name, res.path))
+        # Ignore base repo
+        if res.repository.full_name not in repo_name
+            repoName = res.repository.full_name
+            repoPath = res.path
+            tableRows += tableColumDelimiter + backTick + searchTerm + backTick + tableColumDelimiter + repoPath + tableColumDelimiter + repoName + tableColumDelimiter + newLine
+            print('Found match.. File: {} Repository: {}" Path:{}'.format(res.name, res.repository.full_name, res.path))
 outputTable += tableRows
 
 if not prid:
