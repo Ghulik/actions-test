@@ -34,7 +34,7 @@ def getFieldsToRemove():
 g = Github(key)
 s = ' '.join(getFieldsToRemove())
 print("Searching query " + s)
-results = g.search_code('org:Ghulik Field__c')
+results = g.search_code('org:Ghulik Field__c ApiName__c')
 for res in results:
     print('Found match.. File: {} Repository: {}" Path:{}'.format(res.name, res.repository.full_name, res.path))
 
