@@ -29,7 +29,7 @@ def getFieldsToRemove():
         print('destructiveChanges.xml not found')
     return foundMatches
 
-g = Github("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")
+g = Github(key)
 
 results = g.search_code('org:Ghulik ' + ' '.join(getFieldsToRemove()))
 
