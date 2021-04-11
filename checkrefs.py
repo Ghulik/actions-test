@@ -29,5 +29,7 @@ def getFieldsToRemove():
     print('Fields found in destructive changes to be removed: {}'.format(foundMatches))
     return foundMatches
 
+getFieldsToRemove()
+
 for res in results:
     print('Found match.. File: {} Repository: {}" Path:{}'.format(res.name, res.repository.full_name, res.path))
