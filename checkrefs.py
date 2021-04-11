@@ -10,23 +10,27 @@ results = g.search_code('org:Ghulik test')
 
 
 def getFieldsToRemove():
-    tree = ET.parse('destructiveChanges.xml')
-    root = tree.getroot()
     foundMatches = []
-    for child in root:
-        if "types" in child.tag:
-            containsCheckedMeta = False
-            for secondChild in child:
-                if "CustomField" in secondChild.text:
-                    containsCheckedMeta = True
-            if containsCheckedMeta:
+    try:
+        tree = ET.parse('destructiveChanges.xml')
+        root = tree.getroot()
+        
+        for child in root:
+            if "types" in child.tag:
+                containsCheckedMeta = False
                 for secondChild in child:
-                    if "members" in secondChild.tag:
-                        split_string = secondChild.text.split(".", 1)
-                        if(len(split_string) > 1):
-                            apiname = split_string[1]
-                            foundMatches.append(apiname)
-    print('Fields found in destructive changes to be removed: {}'.format(foundMatches))
+                    if "CustomField" in secondChild.text:
+                        containsCheckedMeta = True
+                if containsCheckedMeta:
+                    for secondChild in child:
+                        if "members" in secondChild.tag:
+                            split_string = secondChild.text.split(".", 1)
+                            if(len(split_string) > 1):
+                                apiname = split_string[1]
+                                foundMatches.append(apiname)
+        print('Fields found in destructive changes to be removed: {}'.format(foundMatches))
+    except FileNotFoundError:
+        print('destructiveChanges.xml not found')
     return foundMatches
 
 getFieldsToRemove()
