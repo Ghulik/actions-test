@@ -19,7 +19,6 @@ def getFieldsToRemove():
                 containsCheckedMeta = False
                 for secondChild in child:
                     if "CustomField" in secondChild.text:
-                        print('destructiveChanges.xml contains CustomField type')
                         containsCheckedMeta = True
                 if containsCheckedMeta is True:
                     for secondChild in child:
@@ -28,9 +27,6 @@ def getFieldsToRemove():
                             if(len(split_string) > 1):
                                 apiname = split_string[1]
                                 foundMatches.append(apiname)
-                else:
-                    print('destructiveChanges.xml does not contain CustomField type')
-                    exit(0)  
         print('Fields found in destructive changes to are going to be removed from salesforce: {}'.format(foundMatches))
     except FileNotFoundError:
         # Destruction changes file not found, exit success
@@ -38,14 +34,20 @@ def getFieldsToRemove():
         exit(0)
     return foundMatches
 
+# destructionChange.xml did not contain any CustomFields
+if(len(fieldToCheck) == 0):
+    print('destructiveChanges.xml does not contain CustomField type')
+    exit(0)  
+    
+# Search github for refences in code
 g = Github(key)
-fieldToCheck = getFieldsToRemove()
 
-outputTable = "Search Term  | File | Repository\n------------- | -------------\n"
+# Vars for output comment
+outputTable = "Found these references:\n\nSearch Term  | File | Repository\n------------- | -------------\n"
 tableColumDelimiter = "|"
 newLine = "\n"
 
-for searchTerm in fieldToCheck:
+for searchTerm in getFieldsToRemove():
     results = g.search_code('org:Ghulik ' + searchTerm)
     for res in results:
         fileName = res.name
