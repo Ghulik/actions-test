@@ -45,17 +45,18 @@ if(len(fieldToCheck) == 0):
 g = Github(key)
 
 # Vars for output comment
-outputTable = "Found these references:\n\n| Search Term | File | Repository |\n|--- | --- | --- |\n"
+outputTable = "**Found these references:**\n\n| Search Term | File | Repository |\n| :--- | :--- | :--- |\n"
 tableColumDelimiter = "|"
 newLine = "\n"
 tableRows = ""
+backTick = "`"
 for searchTerm in fieldToCheck:
     results = g.search_code('org:Ghulik ' + searchTerm)
     for res in results:
         fileName = res.name
         repoName = res.repository.full_name
         repoPath = res.path
-        tableRows += tableColumDelimiter + searchTerm + tableColumDelimiter + fileName + tableColumDelimiter + repoPath + tableColumDelimiter + newLine
+        tableRows += tableColumDelimiter + backTick + searchTerm + backTick + tableColumDelimiter + fileName + tableColumDelimiter + repoPath + tableColumDelimiter + newLine
         print('Found match.. File: {} Repository: {}" Path:{}'.format(res.name, res.repository.full_name, res.path))
 outputTable += tableRows
 
