@@ -7,6 +7,13 @@ key = os.getenv("API_KEY")
 prid = os.getenv("PR_NUMBER")
 repo_name = "Ghulik/actions-test"
 
+# Vars for output comment
+outputTable = "**Found these references:**\n\n| Search Term | Path | Repository |\n| :--- | :--- | :--- |\n"
+tableColumDelimiter = "|"
+newLine = "\n"
+tableRows = ""
+backTick = "`"
+
 # Search for CustomFields referenced in desctructiveChanges.xml
 def getFieldsToRemove():
     foundMatches = []
@@ -44,17 +51,11 @@ if(len(fieldToCheck) == 0):
 # Search github for refences in code
 g = Github(key)
 
-# Vars for output comment
-outputTable = "**Found these references:**\n\n| Search Term | Path | Repository |\n| :--- | :--- | :--- |\n"
-tableColumDelimiter = "|"
-newLine = "\n"
-tableRows = ""
-backTick = "`"
 for searchTerm in fieldToCheck:
     results = g.search_code('org:Ghulik ' + searchTerm)
     for res in results:
         # Ignore base repo
-        if res.repository.full_name not in repo_name
+        if not repo_name in res.repository.full_name 
             repoName = res.repository.full_name
             repoPath = res.path
             tableRows += tableColumDelimiter + backTick + searchTerm + backTick + tableColumDelimiter + repoPath + tableColumDelimiter + repoName + tableColumDelimiter + newLine
