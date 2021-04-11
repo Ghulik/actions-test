@@ -18,10 +18,8 @@ jobs:
         repository: Ghulik/some-other-private-repo
         token: ${{secrets.ACCESS_TOKEN}}
     # You can test your matrix by printing the current Python version
-    - name: Display Python version
-      run: python -c "import sys; print(sys.version)"
-    - name: checkout repo content
-      run: python script.py
+    - name: search code
+      run: python clonerepo.py
      
         
       
