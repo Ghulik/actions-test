@@ -1,4 +1,4 @@
-name: Destruction Changes Check
+name: Destruction Changes Validation
 
 on: 
   workflow_dispatch: 
