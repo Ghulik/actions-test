@@ -3,7 +3,7 @@
     <types>
         <members>Object.Field__c</members>
         <members>Object.ApiName__c</members>
-        <members>Object.Name</members>
+        <members>Object.ApiName</members>
         <name>CustomField</name>
     </types>
     <types>
