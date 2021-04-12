@@ -6,7 +6,7 @@ github_workspace = os.getenv("GITHUB_WORKSPACE")
 key = os.getenv("API_KEY")
 prid = os.getenv("PR_NUMBER")
 repo_name = "Ghulik/actions-test"
-# 
+## #  
 # Vars for output comment
 outputTable = "**Found these references:**\n\n| Search Term | Path | Repository |\n| :--- | :--- | :--- |\n"
 tableColumDelimiter = "|"
