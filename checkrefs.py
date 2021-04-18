@@ -58,6 +58,7 @@ url = 'https://api.github.com/search/code'
 for searchTerm in fieldToCheck:
     q = url+'?q='+searchTerm+' org:Ghulik'
     results = json.loads(gh_session.get(q).text)
+    print(results)
     for res in results['items']:
         repoName = res['repository']['html_url']
         repoPath = res['name']
