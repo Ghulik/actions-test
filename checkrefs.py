@@ -2,6 +2,7 @@ import os
 import xml.etree.ElementTree as ET
 import urllib.parse
 import json
+import requests
 
 github_workspace = os.getenv("GITHUB_WORKSPACE")
 key = os.getenv("API_KEY")
