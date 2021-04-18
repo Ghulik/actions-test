@@ -1,6 +1,7 @@
 import os
 import xml.etree.ElementTree as ET
-from github import Github
+import urllib.parse
+import json
 
 github_workspace = os.getenv("GITHUB_WORKSPACE")
 key = os.getenv("API_KEY")
@@ -48,14 +49,17 @@ if(len(fieldToCheck) == 0):
     print('destructiveChanges.xml does not contain CustomField type')
     exit(0)  
     
-# Search github for refences in code
-g = Github(key)
+# Reusable session
+gh_session = requests.Session()
+gh_session.auth = ('Ghulik', 'mbzagulas1987')
+url = 'https://api.github.com/search/code' 
 
 for searchTerm in fieldToCheck:
-    results = g.search_code('org:Ghulik ' + searchTerm)
-    for res in results:
-        repoName = res.repository.full_name
-        repoPath = res.path
+    q = url+'?q='+searchTerm+' org:Ghulik'
+    results = json.loads(gh_session.get(q).text)
+    for res in results['items']:
+        repoName = res['repository']['html_url']
+        repoPath = res['name']
         # Ignore base repo
         if not repo_name in repoName:
             tableRows += tableColumDelimiter + backTick + searchTerm + backTick + tableColumDelimiter + repoPath + tableColumDelimiter + repoName + tableColumDelimiter + newLine
